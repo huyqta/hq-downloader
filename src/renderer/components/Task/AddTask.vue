@@ -31,6 +31,11 @@
             <mo-select-torrent v-on:change="handleTorrentChange" />
           </el-form-item>
         </el-tab-pane>
+        <el-tab-pane :label="$t('task.site-grabber')" name="site_grabber">
+          <el-form-item>
+             <mo-site-grabber v-on:change="handleSiteGrabberChange" />
+          </el-form-item>
+        </el-tab-pane>
       </el-tabs>
       <el-row :gutter="12">
         <el-col :span="15" :xs="24">
@@ -200,6 +205,7 @@
   import HistoryDirectory from '@/components/Preference/HistoryDirectory'
   import SelectDirectory from '@/components/Native/SelectDirectory'
   import SelectTorrent from '@/components/Task/SelectTorrent'
+  import SiteGrabber from '@/components/Task/SiteGrabber'
   import {
     initTaskForm,
     buildUriPayload,
@@ -214,7 +220,8 @@
     components: {
       [HistoryDirectory.name]: HistoryDirectory,
       [SelectDirectory.name]: SelectDirectory,
-      [SelectTorrent.name]: SelectTorrent
+      [SelectTorrent.name]: SelectTorrent,
+      [SiteGrabber.name]: SiteGrabber
     },
     props: {
       visible: {
@@ -283,7 +290,7 @@
         }
       },
       beforeClose () {
-        if (isEmpty(this.form.uris) && isEmpty(this.form.torrent)) {
+        if (isEmpty(this.form.uris) && isEmpty(this.form.torrent) && isEmpty(this.form.siteGrabberFiles)) {
           this.handleClose()
         }
       },
@@ -338,6 +345,9 @@
         this.form.torrent = torrent
         this.form.selectFile = selectedFileIndex
       },
+      handleSiteGrabberChange (files) {
+        this.form.siteGrabberFiles = files
+      },
       handleHistoryDirectorySelected (dir) {
         this.form.dir = dir
       },
@@ -360,6 +370,20 @@
           payload = buildTorrentPayload(form)
           this.$store.dispatch('task/addTorrent', payload).catch(err => {
             this.$msg.error(err.message)
+          })
+        } else if (type === ADD_TASK_TYPE.SITE_GRABBER) {
+          if (!form.siteGrabberFiles || form.siteGrabberFiles.length === 0) {
+            return
+          }
+          form.siteGrabberFiles.forEach(file => {
+            const uriPayload = buildUriPayload({
+               ...form,
+               uris: file.path,
+               out: file.name
+            })
+            this.$store.dispatch('task/addUri', uriPayload).catch(err => {
+              this.$msg.error(err.message)
+            })
           })
         } else if (type === 'metalink') {
         // @TODO addMetalink

@@ -116,5 +116,12 @@ export default {
   'bt-download-complete-tips': 'Tips: You can stop a task to end its seeding',
   'bt-stopping-seeding-tip': 'Stopping seeding, it will take some time to disconnect, please wait patiently',
   'download-fail-message': 'Failed to download {{taskName}}',
-  'download-fail-notify': 'Download Failed'
+  'download-fail-notify': 'Download Failed',
+  'site-grabber': 'Site Grabber',
+  'url': 'URL',
+  'url-placeholder': 'Enter URL to scan',
+  'extensions': 'Extensions',
+  'extensions-placeholder': 'e.g. jpg, png, pdf',
+  'scan': 'Scan',
+  'no-files-found': 'No files found'
 }

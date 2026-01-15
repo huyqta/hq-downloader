@@ -116,5 +116,12 @@ export default {
   'bt-download-complete-tips': 'Mẹo: Bạn có thể dừng một tác vụ để kết thúc việc seed',
   'bt-stopping-seeding-tip': 'Ngừng seed, sẽ mất một thời gian để ngắt kết nối, vui lòng đợi...',
   'download-fail-message': 'Không thể tải xuống {{taskName}}',
-  'download-fail-notify': 'Tải xuống thất bại'
+  'download-fail-notify': 'Tải xuống thất bại',
+  'site-grabber': 'Site Grabber',
+  'url': 'URL',
+  'url-placeholder': 'Nhập URL để quét',
+  'extensions': 'Phần mở rộng',
+  'extensions-placeholder': 'ví dụ: jpg, png, pdf',
+  'scan': 'Quét',
+  'no-files-found': 'Không tìm thấy tệp nào'
 }
