@@ -36,6 +36,11 @@
              <mo-site-grabber v-on:change="handleSiteGrabberChange" />
           </el-form-item>
         </el-tab-pane>
+        <el-tab-pane :label="$t('task.page-grabber')" name="page_grabber">
+          <el-form-item>
+             <mo-page-grabber v-on:change="handlePageGrabberChange" />
+          </el-form-item>
+        </el-tab-pane>
         <el-tab-pane :label="'Media Capture'" name="media_capture">
           <el-form-item>
              <mo-media-capture v-on:change="handleMediaCaptureChange" />
@@ -211,6 +216,7 @@
   import SelectDirectory from '@/components/Native/SelectDirectory'
   import SelectTorrent from '@/components/Task/SelectTorrent'
   import SiteGrabber from '@/components/Task/SiteGrabber'
+  import PageGrabber from '@/components/Task/PageGrabber'
   import MediaCapture from '@/components/Task/MediaCapture'
   import {
     initTaskForm,
@@ -228,6 +234,7 @@
       [SelectDirectory.name]: SelectDirectory,
       [SelectTorrent.name]: SelectTorrent,
       [SiteGrabber.name]: SiteGrabber,
+      [PageGrabber.name]: PageGrabber,
       [MediaCapture.name]: MediaCapture
     },
     props: {
@@ -358,6 +365,9 @@
       handleSiteGrabberChange (files) {
         this.form.siteGrabberFiles = files
       },
+      handlePageGrabberChange (files) {
+        this.form.siteGrabberFiles = files
+      },
       handleHistoryDirectorySelected (dir) {
         this.form.dir = dir
       },
@@ -381,7 +391,7 @@
           this.$store.dispatch('task/addTorrent', payload).catch(err => {
             this.$msg.error(err.message)
           })
-        } else if (type === ADD_TASK_TYPE.SITE_GRABBER || type === ADD_TASK_TYPE.MEDIA_CAPTURE) {
+        } else if (type === ADD_TASK_TYPE.SITE_GRABBER || type === ADD_TASK_TYPE.PAGE_GRABBER || type === ADD_TASK_TYPE.MEDIA_CAPTURE) {
           if (!form.siteGrabberFiles || form.siteGrabberFiles.length === 0) {
             return
           }

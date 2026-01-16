@@ -38,13 +38,13 @@ import DockManager from './ui/DockManager'
 import ThemeManager from './ui/ThemeManager'
 
 export default class Application extends EventEmitter {
-  constructor () {
+  constructor() {
     super()
     this.isReady = false
     this.init()
   }
 
-  init () {
+  init() {
     this.initContext()
 
     this.initConfigManager()
@@ -99,17 +99,17 @@ export default class Application extends EventEmitter {
     this.emit('application:initialized')
   }
 
-  initContext () {
+  initContext() {
     this.context = new Context()
   }
 
-  initConfigManager () {
+  initConfigManager() {
     this.configListeners = {}
     this.configManager = new ConfigManager()
     this.mediaManager = new MediaManager()
   }
 
-  offConfigListeners () {
+  offConfigListeners() {
     try {
       Object.keys(this.configListeners).forEach((key) => {
         this.configListeners[key]()
@@ -120,7 +120,7 @@ export default class Application extends EventEmitter {
     this.configListeners = {}
   }
 
-  setupLogger () {
+  setupLogger() {
     const { userConfig } = this.configManager
     const key = 'log-level'
     const logLevel = userConfig.get(key)
@@ -132,18 +132,18 @@ export default class Application extends EventEmitter {
     })
   }
 
-  initLocaleManager () {
+  initLocaleManager() {
     this.locale = this.configManager.getLocale()
     this.localeManager = setupLocaleManager(this.locale)
     this.i18n = this.localeManager.getI18n()
   }
 
-  setupApplicationMenu () {
+  setupApplicationMenu() {
     this.menuManager = new MenuManager()
     this.menuManager.setup(this.locale)
   }
 
-  adjustMenu () {
+  adjustMenu() {
     if (is.mas()) {
       const visibleStates = {
         'app.check-for-updates': false,
@@ -154,7 +154,7 @@ export default class Application extends EventEmitter {
     }
   }
 
-  startEngine () {
+  startEngine() {
     const self = this
 
     try {
@@ -177,7 +177,7 @@ export default class Application extends EventEmitter {
     }
   }
 
-  async stopEngine () {
+  async stopEngine() {
     logger.info('[HKU] stopEngine===>')
     try {
       await this.engineClient.shutdown({ force: true })
@@ -192,7 +192,7 @@ export default class Application extends EventEmitter {
     }
   }
 
-  initEngineClient () {
+  initEngineClient() {
     const port = this.configManager.getSystemConfig('rpc-listen-port')
     const secret = this.configManager.getSystemConfig('rpc-secret')
     this.engineClient = new EngineClient({
@@ -201,15 +201,15 @@ export default class Application extends EventEmitter {
     })
   }
 
-  initAutoLaunchManager () {
+  initAutoLaunchManager() {
     this.autoLaunchManager = new AutoLaunchManager()
   }
 
-  initEnergyManager () {
+  initEnergyManager() {
     this.energyManager = new EnergyManager()
   }
 
-  initTrayManager () {
+  initTrayManager() {
     this.trayManager = new TrayManager({
       theme: this.configManager.getUserConfig('tray-theme'),
       systemTheme: this.themeManager.getSystemTheme(),
@@ -236,7 +236,7 @@ export default class Application extends EventEmitter {
     })
   }
 
-  watchTraySpeedometerEnabledChange () {
+  watchTraySpeedometerEnabledChange() {
     const { userConfig } = this.configManager
     const key = 'tray-speedometer'
     this.configListeners[key] = userConfig.onDidChange(key, async (newValue, oldValue) => {
@@ -245,13 +245,13 @@ export default class Application extends EventEmitter {
     })
   }
 
-  initDockManager () {
+  initDockManager() {
     this.dockManager = new DockManager({
       runMode: this.configManager.getUserConfig('run-mode')
     })
   }
 
-  watchOpenAtLoginChange () {
+  watchOpenAtLoginChange() {
     const { userConfig } = this.configManager
     const key = 'open-at-login'
     this.configListeners[key] = userConfig.onDidChange(key, async (newValue, oldValue) => {
@@ -268,7 +268,7 @@ export default class Application extends EventEmitter {
     })
   }
 
-  watchProtocolsChange () {
+  watchProtocolsChange() {
     const { userConfig } = this.configManager
     const key = 'protocols'
     this.configListeners[key] = userConfig.onDidChange(key, async (newValue, oldValue) => {
@@ -283,7 +283,7 @@ export default class Application extends EventEmitter {
     })
   }
 
-  watchRunModeChange () {
+  watchRunModeChange() {
     const { userConfig } = this.configManager
     const key = 'run-mode'
     this.configListeners[key] = userConfig.onDidChange(key, async (newValue, oldValue) => {
@@ -300,7 +300,7 @@ export default class Application extends EventEmitter {
     })
   }
 
-  watchProxyChange () {
+  watchProxyChange() {
     const { userConfig } = this.configManager
     const key = 'proxy'
     this.configListeners[key] = userConfig.onDidChange(key, async (newValue, oldValue) => {
@@ -319,7 +319,7 @@ export default class Application extends EventEmitter {
     })
   }
 
-  watchLocaleChange () {
+  watchLocaleChange() {
     const { userConfig } = this.configManager
     const key = 'locale'
     this.configListeners[key] = userConfig.onDidChange(key, async (newValue, oldValue) => {
@@ -333,7 +333,7 @@ export default class Application extends EventEmitter {
     })
   }
 
-  watchThemeChange () {
+  watchThemeChange() {
     const { userConfig } = this.configManager
     const key = 'theme'
     this.configListeners[key] = userConfig.onDidChange(key, async (newValue, oldValue) => {
@@ -343,7 +343,7 @@ export default class Application extends EventEmitter {
     })
   }
 
-  watchShowProgressBarChange () {
+  watchShowProgressBarChange() {
     const { userConfig } = this.configManager
     const key = 'show-progress-bar'
     this.configListeners[key] = userConfig.onDidChange(key, async (newValue, oldValue) => {
@@ -357,7 +357,7 @@ export default class Application extends EventEmitter {
     })
   }
 
-  initUPnPManager () {
+  initUPnPManager() {
     this.upnp = new UPnPManager()
 
     this.watchUPnPEnabledChange()
@@ -372,7 +372,7 @@ export default class Application extends EventEmitter {
     this.startUPnPMapping()
   }
 
-  async startUPnPMapping () {
+  async startUPnPMapping() {
     const btPort = this.configManager.getSystemConfig('listen-port')
     const dhtPort = this.configManager.getSystemConfig('dht-listen-port')
 
@@ -387,7 +387,7 @@ export default class Application extends EventEmitter {
     }
   }
 
-  async stopUPnPMapping () {
+  async stopUPnPMapping() {
     const btPort = this.configManager.getSystemConfig('listen-port')
     const dhtPort = this.configManager.getSystemConfig('dht-listen-port')
 
@@ -402,7 +402,7 @@ export default class Application extends EventEmitter {
     }
   }
 
-  watchUPnPPortsChange () {
+  watchUPnPPortsChange() {
     const { systemConfig } = this.configManager
     const watchKeys = ['listen-port', 'dht-listen-port']
 
@@ -427,7 +427,7 @@ export default class Application extends EventEmitter {
     })
   }
 
-  watchUPnPEnabledChange () {
+  watchUPnPEnabledChange() {
     const { userConfig } = this.configManager
     const key = 'enable-upnp'
     this.configListeners[key] = userConfig.onDidChange(key, async (newValue, oldValue) => {
@@ -441,7 +441,7 @@ export default class Application extends EventEmitter {
     })
   }
 
-  async shutdownUPnPManager () {
+  async shutdownUPnPManager() {
     const enable = this.configManager.getUserConfig('enable-upnp')
     if (enable) {
       await this.stopUPnPMapping()
@@ -450,7 +450,7 @@ export default class Application extends EventEmitter {
     this.upnp.closeClient()
   }
 
-  syncTrackers (source, proxy) {
+  syncTrackers(source, proxy) {
     if (isEmpty(source)) {
       return
     }
@@ -478,7 +478,7 @@ export default class Application extends EventEmitter {
     }, 500)
   }
 
-  autoSyncTrackers () {
+  autoSyncTrackers() {
     const enable = this.configManager.getUserConfig('auto-sync-tracker')
     const lastTime = this.configManager.getUserConfig('last-sync-tracker-time')
     const result = checkIsNeedRun(enable, lastTime, AUTO_SYNC_TRACKER_INTERVAL)
@@ -493,7 +493,7 @@ export default class Application extends EventEmitter {
     this.syncTrackers(source, proxy)
   }
 
-  autoResumeTask () {
+  autoResumeTask() {
     const enabled = this.configManager.getUserConfig('resume-all-when-app-launched')
     if (!enabled) {
       return
@@ -502,7 +502,7 @@ export default class Application extends EventEmitter {
     this.engineClient.call('unpauseAll')
   }
 
-  initWindowManager () {
+  initWindowManager() {
     this.windowManager = new WindowManager({
       userConfig: this.configManager.getUserConfig()
     })
@@ -531,7 +531,7 @@ export default class Application extends EventEmitter {
     })
   }
 
-  storeWindowState (data = {}) {
+  storeWindowState(data = {}) {
     const enabled = this.configManager.getUserConfig('keep-window-state')
     if (!enabled) {
       return
@@ -546,7 +546,7 @@ export default class Application extends EventEmitter {
     this.configManager.setUserConfig('window-state', newState)
   }
 
-  start (page, options = {}) {
+  start(page, options = {}) {
     const win = this.showPage(page, options)
 
     win.once('ready-to-show', () => {
@@ -559,7 +559,7 @@ export default class Application extends EventEmitter {
     }
   }
 
-  showPage (page, options = {}) {
+  showPage(page, options = {}) {
     const { openedAtLogin } = options
     const autoHideWindow = this.configManager.getUserConfig('auto-hide-window')
     return this.windowManager.openWindow(page, {
@@ -567,11 +567,11 @@ export default class Application extends EventEmitter {
     })
   }
 
-  show (page = 'index') {
+  show(page = 'index') {
     this.windowManager.showWindow(page)
   }
 
-  hide (page) {
+  hide(page) {
     if (page) {
       this.windowManager.hideWindow(page)
     } else {
@@ -579,15 +579,15 @@ export default class Application extends EventEmitter {
     }
   }
 
-  toggle (page = 'index') {
+  toggle(page = 'index') {
     this.windowManager.toggleWindow(page)
   }
 
-  closePage (page) {
+  closePage(page) {
     this.windowManager.destroyWindow(page)
   }
 
-  stop () {
+  stop() {
     try {
       const promises = [
         this.stopEngine(),
@@ -602,16 +602,16 @@ export default class Application extends EventEmitter {
     }
   }
 
-  async stopAllSettled () {
+  async stopAllSettled() {
     await Promise.allSettled(this.stop())
   }
 
-  async quit () {
+  async quit() {
     await this.stopAllSettled()
     app.exit()
   }
 
-  sendCommand (command, ...args) {
+  sendCommand(command, ...args) {
     if (!this.emit(command, ...args)) {
       const window = this.windowManager.getFocusedWindow()
       if (window) {
@@ -620,7 +620,7 @@ export default class Application extends EventEmitter {
     }
   }
 
-  sendCommandToAll (command, ...args) {
+  sendCommandToAll(command, ...args) {
     if (!this.emit(command, ...args)) {
       this.windowManager.getWindowList().forEach(window => {
         this.windowManager.sendCommandTo(window, command, ...args)
@@ -628,13 +628,13 @@ export default class Application extends EventEmitter {
     }
   }
 
-  sendMessageToAll (channel, ...args) {
+  sendMessageToAll(channel, ...args) {
     this.windowManager.getWindowList().forEach(window => {
       this.windowManager.sendMessageTo(window, channel, ...args)
     })
   }
 
-  initThemeManager () {
+  initThemeManager() {
     this.themeManager = new ThemeManager()
     this.themeManager.on('system-theme-change', (theme) => {
       this.trayManager.handleSystemThemeChange(theme)
@@ -642,7 +642,7 @@ export default class Application extends EventEmitter {
     })
   }
 
-  initTouchBarManager () {
+  initTouchBarManager() {
     if (!is.macOS()) {
       return
     }
@@ -650,20 +650,20 @@ export default class Application extends EventEmitter {
     this.touchBarManager = new TouchBarManager()
   }
 
-  initProtocolManager () {
+  initProtocolManager() {
     const protocols = this.configManager.getUserConfig('protocols', {})
     this.protocolManager = new ProtocolManager({
       protocols
     })
   }
 
-  handleProtocol (url) {
+  handleProtocol(url) {
     this.show()
 
     this.protocolManager.handle(url)
   }
 
-  handleFile (filePath) {
+  handleFile(filePath) {
     if (!filePath) {
       return
     }
@@ -688,7 +688,7 @@ export default class Application extends EventEmitter {
     })
   }
 
-  initUpdaterManager () {
+  initUpdaterManager() {
     if (is.mas()) {
       return
     }
@@ -704,7 +704,7 @@ export default class Application extends EventEmitter {
     this.handleUpdaterEvents()
   }
 
-  handleUpdaterEvents () {
+  handleUpdaterEvents() {
     this.updateManager.on('checking', (event) => {
       this.menuManager.updateMenuItemEnabledState('app.check-for-updates', false)
       this.trayManager.updateMenuItemEnabledState('app.check-for-updates', false)
@@ -746,13 +746,13 @@ export default class Application extends EventEmitter {
     })
   }
 
-  async relaunch () {
+  async relaunch() {
     await this.stopAllSettled()
     app.relaunch()
     app.exit()
   }
 
-  async resetSession () {
+  async resetSession() {
     await this.stopEngine()
 
     app.clearRecentDocuments()
@@ -767,7 +767,7 @@ export default class Application extends EventEmitter {
     }, 3000)
   }
 
-  savePreference (config = {}) {
+  savePreference(config = {}) {
     logger.info('[HKU] save preference:', config)
     const { system, user } = config
     if (!isEmpty(system)) {
@@ -782,7 +782,7 @@ export default class Application extends EventEmitter {
     }
   }
 
-  handleCommands () {
+  handleCommands() {
     this.on('application:save-preference', this.savePreference)
 
     this.on('application:update-tray', (tray) => {
@@ -920,7 +920,7 @@ export default class Application extends EventEmitter {
     })
   }
 
-  openExternal (url) {
+  openExternal(url) {
     if (!url) {
       return
     }
@@ -928,11 +928,11 @@ export default class Application extends EventEmitter {
     shell.openExternal(url)
   }
 
-  handleConfigChange (configName) {
+  handleConfigChange(configName) {
     this.sendCommandToAll('application:update-preference-config', { configName })
   }
 
-  handleEvents () {
+  handleEvents() {
     this.once('application:initialized', () => {
       this.autoSyncTrackers()
 
@@ -980,7 +980,7 @@ export default class Application extends EventEmitter {
     }
   }
 
-  handleProgressChange (progress) {
+  handleProgressChange(progress) {
     if (this.updateManager.isChecking) {
       return
     }
@@ -990,7 +990,7 @@ export default class Application extends EventEmitter {
     this.windowManager.getWindow('index').setProgressBar(progress)
   }
 
-  bindProgressChange () {
+  bindProgressChange() {
     if (this.listeners('progress-change').length > 0) {
       return
     }
@@ -998,7 +998,7 @@ export default class Application extends EventEmitter {
     this.on('progress-change', this.handleProgressChange)
   }
 
-  unbindProgressChange () {
+  unbindProgressChange() {
     if (this.listeners('progress-change').length === 0) {
       return
     }
@@ -1007,7 +1007,7 @@ export default class Application extends EventEmitter {
     this.windowManager.getWindow('index').setProgressBar(-1)
   }
 
-  handleIpcMessages () {
+  handleIpcMessages() {
     ipcMain.on('command', (event, command, ...args) => {
       logger.log('[HKU] ipc receive command', command, ...args)
       this.emit(command, ...args)
@@ -1019,7 +1019,7 @@ export default class Application extends EventEmitter {
     })
   }
 
-  handleIpcInvokes () {
+  handleIpcInvokes() {
     ipcMain.handle('get-app-config', async () => {
       const systemConfig = this.configManager.getSystemConfig()
       const userConfig = this.configManager.getUserConfig()
@@ -1037,13 +1037,147 @@ export default class Application extends EventEmitter {
       try {
         const axios = require('axios')
         const response = await axios.get(url, {
+          timeout: 10000,
           headers: {
-            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.9',
+            'Referer': new URL(url).origin // Simple referrer
           }
+        }
+    })
+
+    // --- Crawler Logic ---
+    let currentCrawlController = null
+
+    ipcMain.handle('application:start-crawl', async (event, { url, extensions, maxDepth }) => {
+      if (currentCrawlController) {
+        currentCrawlController.cancelled = true
+      }
+
+      const controller = { cancelled: false }
+      currentCrawlController = controller
+
+      const axios = require('axios')
+      const queue = [{ url: url, depth: 1 }]
+      const visited = new Set()
+      const foundFilesMap = new Map() // Deduplicate
+
+      const extList = extensions.split(',').map(e => e.trim().toLowerCase().replace(/^\./, ''))
+      const startDomain = new URL(url).hostname.replace(/^www\./, '')
+
+      // Send initial
+      event.sender.send('crawl-progress', { queue: queue.length, visited: 0, found: 0, current: '' })
+
+      const fetchPage = async (pageUrl) => {
+        try {
+          const response = await axios.get(pageUrl, {
+            timeout: 10000,
+            headers: {
+              'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+              'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8'
+            }
+          })
+          return response.data
+        } catch (e) {
+          return null
+        }
+      }
+
+      // Regex for link extraction
+      // Captures href="X" or src="X", handles ' and "
+      const linkRegex = /(?:href|src)=["']([^"']+)["']/gi
+
+      while (queue.length > 0) {
+        if (controller.cancelled) break
+
+        const current = queue.shift()
+        const currentUrl = current.url
+
+        const normalizedUrl = currentUrl.replace(/\/$/, '')
+        if (visited.has(normalizedUrl)) continue
+        visited.add(normalizedUrl)
+
+        // Update status
+        event.sender.send('crawl-progress', {
+          queue: queue.length,
+          visited: visited.size,
+          found: foundFilesMap.size,
+          current: currentUrl
         })
-        return response.data
-      } catch (err) {
-        throw new Error(err.message)
+
+        const html = await fetchPage(currentUrl)
+        if (!html) continue // Skip if failed
+
+        let match
+        let pageLinks = []
+        let pageFiles = []
+
+        // Reset regex index
+        linkRegex.lastIndex = 0
+
+        while ((match = linkRegex.exec(html)) !== null) {
+          const raw = match[1]
+          if (!raw || raw.startsWith('#') || raw.startsWith('javascript:') || raw.startsWith('mailto:')) continue
+
+          try {
+            const absolute = new URL(raw, currentUrl).href
+            const urlObj = new URL(absolute)
+            const ext = urlObj.pathname.split('.').pop().toLowerCase()
+
+            if (extList.includes(ext)) {
+              if (!foundFilesMap.has(absolute)) {
+                const name = urlObj.pathname.split('/').pop() || 'file'
+                const file = {
+                  name,
+                  path: absolute,
+                  extension: ext,
+                  source: currentUrl,
+                  length: 0
+                }
+                foundFilesMap.set(absolute, file)
+                pageFiles.push(file)
+              }
+            } else {
+              // Link check
+              const linkDomain = urlObj.hostname.replace(/^www\./, '')
+              if (linkDomain === startDomain) {
+                pageLinks.push(absolute)
+              }
+            }
+          } catch (e) {
+            // ignore
+          }
+        }
+
+        // Send new files if any
+        if (pageFiles.length > 0) {
+          event.sender.send('crawl-found', pageFiles)
+        }
+
+        // Queue links
+        if (current.depth < maxDepth) {
+          for (const link of pageLinks) {
+            const norm = link.replace(/\/$/, '')
+            if (!visited.has(norm)) {
+              // Very basic queue dedupe check could be added here if needed
+              // but Set check handles most infinite loops
+              queue.push({ url: link, depth: current.depth + 1 })
+            }
+          }
+        }
+
+        // Throttle
+        await new Promise(r => setTimeout(r, 50))
+      } // end while
+
+      currentCrawlController = null
+      event.sender.send('crawl-complete')
+    })
+
+    ipcMain.handle('application:stop-crawl', () => {
+      if (currentCrawlController) {
+        currentCrawlController.cancelled = true
       }
     })
   }

@@ -18,6 +18,7 @@ export const ADD_TASK_TYPE = {
   URI: 'uri',
   TORRENT: 'torrent',
   SITE_GRABBER: 'site_grabber',
+  PAGE_GRABBER: 'page_grabber',
   MEDIA_CAPTURE: 'media_capture'
 }
 

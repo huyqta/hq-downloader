@@ -26,6 +26,13 @@
           <template slot-scope="scope">{{ scope.row.extension | removeExtensionDot }}</template>
         </el-table-column>
         <el-table-column
+          v-if="showSource"
+          label="Source"
+          min-width="150"
+          show-overflow-tooltip>
+          <template slot-scope="scope">{{ scope.row.source }}</template>
+        </el-table-column>
+        <el-table-column
           v-if="mode === 'DETAIL'"
           :label="`%`"
           align="right"
@@ -116,6 +123,10 @@
         validator: function (value) {
           return ['ADD', 'DETAIL'].indexOf(value) !== -1
         }
+      },
+      showSource: {
+        type: Boolean,
+        default: false
       },
       height: {
         type: [Number, String]

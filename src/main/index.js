@@ -15,6 +15,30 @@ if (process.env.NODE_ENV !== 'development') {
   global.__static = require('path').join(__dirname, '/static').replace(/\\/g, '\\\\')
 }
 
+// FIX: Prevent "write EPIPE" crashes when stdout/stderr pipes are closed
+if (process.platform === 'win32') {
+  process.on('message', (data) => {
+    if (data === 'graceful-exit') {
+      app.quit()
+    }
+  })
+} else {
+  process.on('SIGTERM', () => {
+    app.quit()
+  })
+}
+
+// Ignore EPIPE errors which happen when the console receiving the output is closed
+process.stdout.on('error', function (err) {
+  if (err.code === 'EPIPE') return
+  process.stderr.write(err.message + '\n')
+})
+
+process.stderr.on('error', function (err) {
+  if (err.code === 'EPIPE') return
+  console.log(err.message) // fallback
+})
+
 /**
  * Fix Windows notification func
  * appId defined in .electron-vue/webpack.main.config.js
