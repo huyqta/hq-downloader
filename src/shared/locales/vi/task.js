@@ -123,5 +123,6 @@ export default {
   'extensions': 'Phần mở rộng',
   'extensions-placeholder': 'ví dụ: jpg, png, pdf',
   'scan': 'Quét',
-  'no-files-found': 'Không tìm thấy tệp nào'
+  'no-files-found': 'Không tìm thấy tệp nào',
+  'analyze': 'Phân tích'
 }

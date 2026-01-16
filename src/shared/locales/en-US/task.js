@@ -123,5 +123,6 @@ export default {
   'extensions': 'Extensions',
   'extensions-placeholder': 'e.g. jpg, png, pdf',
   'scan': 'Scan',
-  'no-files-found': 'No files found'
+  'no-files-found': 'No files found',
+  'analyze': 'Analyze'
 }

@@ -21,6 +21,7 @@ import { showItemInFolder } from './utils'
 import logger from './core/Logger'
 import Context from './core/Context'
 import ConfigManager from './core/ConfigManager'
+import MediaManager from './core/MediaManager'
 import { setupLocaleManager } from './ui/Locale'
 import Engine from './core/Engine'
 import EngineClient from './core/EngineClient'
@@ -86,6 +87,15 @@ export default class Application extends EventEmitter {
 
     this.handleIpcInvokes()
 
+    ipcMain.handle('application:media-analyze', async (event, url) => {
+      try {
+        return await this.mediaManager.extractMediaInfo(url)
+      } catch (error) {
+        logger.error('Media Analyze failed:', error)
+        throw error
+      }
+    })
+
     this.emit('application:initialized')
   }
 
@@ -96,6 +106,7 @@ export default class Application extends EventEmitter {
   initConfigManager () {
     this.configListeners = {}
     this.configManager = new ConfigManager()
+    this.mediaManager = new MediaManager()
   }
 
   offConfigListeners () {

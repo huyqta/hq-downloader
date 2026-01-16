@@ -17,7 +17,8 @@ export const APP_RUN_MODE = {
 export const ADD_TASK_TYPE = {
   URI: 'uri',
   TORRENT: 'torrent',
-  SITE_GRABBER: 'site_grabber'
+  SITE_GRABBER: 'site_grabber',
+  MEDIA_CAPTURE: 'media_capture'
 }
 
 export const TASK_STATUS = {
