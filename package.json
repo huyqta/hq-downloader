@@ -1,18 +1,18 @@
 {
-  "name": "Motrix",
+  "name": "HKU",
   "version": "1.8.19",
   "description": "A full-featured download manager",
-  "homepage": "https://motrix.app",
+  "homepage": "https://hku.app",
   "author": {
-    "name": "Dr_rOot",
-    "email": "agalwood.net@gmail.com"
+    "name": "Huy",
+    "email": "huy@example.com"
   },
-  "copyright": "Copyright© Dr_rOot",
+  "copyright": "Copyright© Huy",
   "license": "MIT",
   "main": "./dist/electron/main.js",
   "repository": {
     "type": "git",
-    "url": "git@github.com:agalwood/Motrix.git"
+    "url": "git@github.com:huy/HKU.git"
   },
   "scripts": {
     "release": "npm run build --publish onTagOrDraft",

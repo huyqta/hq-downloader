@@ -1,5 +1,5 @@
 export default {
-  'app': 'Motrix',
+  'app': 'HKU',
   'file': 'Tập tin',
   'task': 'Tác vụ',
   'edit': 'Chỉnh sửa',

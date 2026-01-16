@@ -127,7 +127,7 @@
           header,
           ...rest
         } = options
-        console.log('[Motrix] show add task dialog options: ', options)
+        console.log('[HKU] show add task dialog options: ', options)
 
         const headers = parseHeader(header)
         const newOptions = {
@@ -212,7 +212,7 @@
       batchDeleteTaskFiles (taskList) {
         const promises = taskList.map((task, index) => delayDeleteTaskFiles(task, index * 200))
         Promise.allSettled(promises).then(results => {
-          console.log('[Motrix] batch delete task files: ', results)
+          console.log('[HKU] batch delete task files: ', results)
         })
       },
       removeTaskItems (gids) {
@@ -262,7 +262,7 @@
 
         this.$store.dispatch('task/getTaskOption', gid)
           .then((data) => {
-            console.log('[Motrix] get task option:', data)
+            console.log('[HKU] get task option:', data)
             const { dir, header, split } = data
             const options = {
               dir,

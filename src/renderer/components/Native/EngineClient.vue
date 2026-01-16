@@ -111,9 +111,9 @@
           .then((task) => {
             const taskName = getTaskName(task)
             const { errorCode, errorMessage } = task
-            console.error(`[Motrix] download error gid: ${gid}, #${errorCode}, ${errorMessage}`)
+            console.error(`[HKU] download error gid: ${gid}, #${errorCode}, ${errorMessage}`)
             const message = this.$t('task.download-error-message', { taskName })
-            const link = `<a target="_blank" href="https://github.com/agalwood/Motrix/wiki/Error#${errorCode}" rel="noopener noreferrer">${errorCode}</a>`
+            const link = `<a target="_blank" href="https://github.com/agalwood/HKU/wiki/Error#${errorCode}" rel="noopener noreferrer">${errorCode}</a>`
             this.$msg({
               type: 'error',
               showClose: true,

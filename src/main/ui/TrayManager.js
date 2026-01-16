@@ -81,28 +81,28 @@ export default class TrayManager extends EventEmitter {
   }
 
   loadImagesForMacOS () {
-    this.normalIcon = this.getFromCacheOrCreateImage('mo-tray-light-normal.png')
+    this.normalIcon = this.getFromCacheOrCreateImage('hku-tray-light-normal.png')
   }
 
   loadImagesForWindows () {
-    this.normalIcon = this.getFromCacheOrCreateImage('mo-tray-colorful-normal.png')
-    this.activeIcon = this.getFromCacheOrCreateImage('mo-tray-colorful-active.png')
+    this.normalIcon = this.getFromCacheOrCreateImage('hku-tray-colorful-normal.png')
+    this.activeIcon = this.getFromCacheOrCreateImage('hku-tray-colorful-active.png')
   }
 
   loadImagesForLinux () {
     const { theme } = this
     if (theme === APP_THEME.AUTO) {
-      this.normalIcon = this.getFromCacheOrCreateImage('mo-tray-dark-normal.png')
-      this.activeIcon = this.getFromCacheOrCreateImage('mo-tray-dark-active.png')
+      this.normalIcon = this.getFromCacheOrCreateImage('hku-tray-dark-normal.png')
+      this.activeIcon = this.getFromCacheOrCreateImage('hku-tray-dark-active.png')
     } else {
-      this.normalIcon = this.getFromCacheOrCreateImage(`mo-tray-${theme}-normal.png`)
-      this.activeIcon = this.getFromCacheOrCreateImage(`mo-tray-${theme}-active.png`)
+      this.normalIcon = this.getFromCacheOrCreateImage(`hku-tray-${theme}-normal.png`)
+      this.activeIcon = this.getFromCacheOrCreateImage(`hku-tray-${theme}-active.png`)
     }
   }
 
   loadImagesForDefault () {
-    this.normalIcon = this.getFromCacheOrCreateImage('mo-tray-light-normal.png')
-    this.activeIcon = this.getFromCacheOrCreateImage('mo-tray-light-active.png')
+    this.normalIcon = this.getFromCacheOrCreateImage('hku-tray-light-normal.png')
+    this.activeIcon = this.getFromCacheOrCreateImage('hku-tray-light-active.png')
   }
 
   getFromCacheOrCreateImage (key) {
@@ -150,7 +150,7 @@ export default class TrayManager extends EventEmitter {
     // tray.setPressedImage(inverseIcon)
 
     if (!this.macOS) {
-      tray.setToolTip('Motrix')
+      tray.setToolTip('HKU')
     }
   }
 
@@ -357,7 +357,7 @@ export default class TrayManager extends EventEmitter {
   }
 
   destroy () {
-    logger.info('[Motrix] TrayManager.destroy')
+    logger.info('[HKU] TrayManager.destroy')
     if (tray) {
       this.unbindEvents()
     }

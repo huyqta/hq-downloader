@@ -109,7 +109,7 @@
               />
             </el-select>
             <div class="el-form-item__info" style="margin-top: 8px;">
-              <a target="_blank" href="https://github.com/agalwood/Motrix/wiki/Proxy" rel="noopener noreferrer">
+              <a target="_blank" href="https://github.com/agalwood/HKU/wiki/Proxy" rel="noopener noreferrer">
                 {{ $t('preferences.proxy-tips') }}
                 <mo-icon name="link" width="12" height="12" />
               </a>
@@ -255,7 +255,7 @@
                 </i>
               </el-input>
               <div class="el-form-item__info" style="margin-top: 8px;">
-                <a target="_blank" href="https://github.com/agalwood/Motrix/wiki/RPC" rel="noopener noreferrer">
+                <a target="_blank" href="https://github.com/agalwood/HKU/wiki/RPC" rel="noopener noreferrer">
                   {{ $t('preferences.rpc-secret-tips') }}
                   <mo-icon name="link" width="12" height="12" />
                 </a>
@@ -724,7 +724,7 @@
       submitForm (formName) {
         this.$refs[formName].validate((valid) => {
           if (!valid) {
-            console.error('[Motrix] preference form valid:', valid)
+            console.error('[HKU] preference form valid:', valid)
             return false
           }
 
@@ -754,7 +754,7 @@
             data.rpcListenPort = this.rpcDefaultPort
           }
 
-          console.log('[Motrix] preference changed data:', data)
+          console.log('[HKU] preference changed data:', data)
 
           this.$store.dispatch('preference/save', data)
             .then(() => {

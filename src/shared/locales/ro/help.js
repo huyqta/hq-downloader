@@ -1,5 +1,5 @@
 export default {
-  'official-website': 'Website Motrix',
+  'official-website': 'Website HKU',
   'manual': 'Manual',
   'release-notes': 'Notele versiunii...',
   'report-problem': 'Raportează problemă',

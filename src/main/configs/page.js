@@ -3,7 +3,7 @@ import is from 'electron-is'
 export default {
   index: {
     attrs: {
-      title: 'Motrix',
+      title: 'HKU',
       width: 1024,
       height: 768,
       minWidth: 478,

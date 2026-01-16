@@ -105,7 +105,7 @@
 
         remote(file.raw, { timeout: 60 * 1000 }, (err, parsedTorrent) => {
           if (err) throw err
-          console.log('[Motrix] parsed torrent: ', parsedTorrent)
+          console.log('[HKU] parsed torrent: ', parsedTorrent)
           this.files = listTorrentFiles(parsedTorrent.files)
           this.$refs.torrentFileList.toggleAllSelection()
 

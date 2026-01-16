@@ -1,5 +1,5 @@
 export default {
-  'app': 'Motrix',
+  'app': 'HKU',
   'file': 'Plik',
   'task': 'Zadanie',
   'edit': 'Edycja',

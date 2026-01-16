@@ -205,7 +205,7 @@ export const showItemInFolder = (fullPath) => {
   fullPath = resolve(fullPath)
   access(fullPath, constants.F_OK, (err) => {
     if (err) {
-      logger.warn(`[Motrix] ${fullPath} ${err ? 'does not exist' : 'exists'}`)
+      logger.warn(`[HKU] ${fullPath} ${err ? 'does not exist' : 'exists'}`)
       return
     }
 

@@ -166,7 +166,7 @@ export default class ConfigManager {
 
   fixUserConfig () {
     // Fix the value of open-at-login when the user delete
-    // the Motrix self-starting item through startup management.
+    // the HKU self-starting item through startup management.
     const openAtLogin = app.getLoginItemSettings(LOGIN_SETTING_OPTIONS).openAtLogin
     if (this.getUserConfig('open-at-login') !== openAtLogin) {
       this.setUserConfig('open-at-login', openAtLogin)
@@ -182,7 +182,7 @@ export default class ConfigManager {
 
   getSystemConfig (key, defaultValue) {
     if (typeof key === 'undefined' &&
-        typeof defaultValue === 'undefined') {
+      typeof defaultValue === 'undefined') {
       return this.systemConfig.store
     }
 
@@ -191,7 +191,7 @@ export default class ConfigManager {
 
   getUserConfig (key, defaultValue) {
     if (typeof key === 'undefined' &&
-        typeof defaultValue === 'undefined') {
+      typeof defaultValue === 'undefined') {
       return this.userConfig.store
     }
 

@@ -38,13 +38,13 @@ function initTrayWorker () {
     switch (type) {
     case 'initialized':
     case 'log':
-      console.log('[Motrix] Log from Tray Worker: ', payload)
+      console.log('[HKU] Log from Tray Worker: ', payload)
       break
     case 'tray:drawed':
       updateTray(payload)
       break
     default:
-      console.warn('[Motrix] Tray Worker unhandled message type:', type, payload)
+      console.warn('[HKU] Tray Worker unhandled message type:', type, payload)
     }
   })
 
@@ -102,7 +102,7 @@ function init (config) {
 
 store.dispatch('preference/fetchPreference')
   .then((config) => {
-    console.info('[Motrix] load preference:', config)
+    console.info('[HKU] load preference:', config)
     init(config)
   })
   .catch((err) => {

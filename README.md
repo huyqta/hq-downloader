@@ -1,35 +1,35 @@
-# Motrix
+# HKU
 
 <p>
-  <a href="https://motrix.app">
-    <img src="./static/512x512.png" width="256" alt="Motrix App Icon" />
+  <a href="https://hku.app">
+    <img src="./static/512x512.png" width="256" alt="HKU App Icon" />
   </a>
 </p>
 
 ## A full-featured download manager
 
-[![GitHub release](https://img.shields.io/github/v/release/agalwood/Motrix.svg)](https://github.com/agalwood/Motrix/releases) ![Build/release](https://github.com/agalwood/Motrix/workflows/Build/release/badge.svg) ![Total Downloads](https://img.shields.io/github/downloads/agalwood/Motrix/total.svg) ![Support Platforms](https://camo.githubusercontent.com/a50c47295f350646d08f2e1ccd797ceca3840e52/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f706c6174666f726d2d6d61634f5325323025374325323057696e646f77732532302537432532304c696e75782d6c69676874677265792e737667)
+[![GitHub release](https://img.shields.io/github/v/release/agalwood/HKU.svg)](https://github.com/agalwood/HKU/releases) ![Build/release](https://github.com/agalwood/HKU/workflows/Build/release/badge.svg) ![Total Downloads](https://img.shields.io/github/downloads/agalwood/HKU/total.svg) ![Support Platforms](https://camo.githubusercontent.com/a50c47295f350646d08f2e1ccd797ceca3840e52/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f706c6174666f726d2d6d61634f5325323025374325323057696e646f77732532302537432532304c696e75782d6c69676874677265792e737667)
 
 English | [简体中文](./README-CN.md)
 
-Motrix is a full-featured download manager that supports downloading HTTP, FTP, BitTorrent, Magnet, etc.
+HKU is a full-featured download manager that supports downloading HTTP, FTP, BitTorrent, Magnet, etc.
 
-Motrix has a clean and easy to use interface. I hope you will like it 👻.
+HKU has a clean and easy to use interface. I hope you will like it 👻.
 
-✈️ [Official Website](https://motrix.app) | 📖 [Manual](https://github.com/agalwood/Motrix/wiki)
+✈️ [Official Website](https://hku.app) | 📖 [Manual](https://github.com/agalwood/HKU/wiki)
 
 ## 💽 Installation
 
-Download from [GitHub Releases](https://github.com/agalwood/Motrix/releases) and install it.
+Download from [GitHub Releases](https://github.com/agalwood/HKU/releases) and install it.
 
 ### Windows
 
-It is recommended to install Motrix using the installation package (Motrix-Setup-x.y.z.exe) to ensure a complete experience, such as associating torrent files, capturing magnet links, etc.
+It is recommended to install HKU using the installation package (HKU-Setup-x.y.z.exe) to ensure a complete experience, such as associating torrent files, capturing magnet links, etc.
 
-If you use package management tools to manage applications on Windows, such as [Chocolatey](https://chocolatey.org), [scoop](https://github.com/lukesampson/scoop). You can use them to install Motrix.
+If you use package management tools to manage applications on Windows, such as [Chocolatey](https://chocolatey.org), [scoop](https://github.com/lukesampson/scoop). You can use them to install HKU.
 
 #### Chocolatey
-Thanks to [@Yato](https://github.com/iYato) for continuing to maintain the [Motrix Chocolatey](https://community.chocolatey.org/packages/motrix) package. To install motrix, run the following command from the `command line` or from `PowerShell`:
+Thanks to [@Yato](https://github.com/iYato) for continuing to maintain the [HKU Chocolatey](https://community.chocolatey.org/packages/motrix) package. To install motrix, run the following command from the `command line` or from `PowerShell`:
 
 ```bash
 # Install
@@ -40,7 +40,7 @@ choco upgrade motrix
 ```
 
 #### scoop
-If you prefer the portable version, you can use [scoop](https://github.com/lukesampson/scoop) (need Windows 7+) to install Motrix.
+If you prefer the portable version, you can use [scoop](https://github.com/lukesampson/scoop) (need Windows 7+) to install HKU.
 
 ```bash
 scoop bucket add extras
@@ -49,7 +49,7 @@ scoop install motrix
 
 ### macOS
 
-The macOS users can install Motrix using `brew`, thanks to [PR](https://github.com/Homebrew/homebrew-cask/pull/59494) of [@Mitscherlich](https://github.com/Mitscherlich).
+The macOS users can install HKU using `brew`, thanks to [PR](https://github.com/Homebrew/homebrew-cask/pull/59494) of [@Mitscherlich](https://github.com/Mitscherlich).
 
 ```bash
 brew update && brew install motrix
@@ -57,39 +57,39 @@ brew update && brew install motrix
 
 #### Auto Update
 
-Since Motrix v1.8.0 and later versions changed the App BundleID ( `net.agalwood.Motrix` => `app.motrix.native` ), the automatic update of Motrix v1.6.11 will fail. [Motrix Install Assistant](https://github.com/motrixapp/motrix-install-assistant) will help you install the latest Motrix application.
+Since HKU v1.8.0 and later versions changed the App BundleID ( `net.agalwood.HKU` => `app.motrix.native` ), the automatic update of HKU v1.6.11 will fail. [HKU Install Assistant](https://github.com/motrixapp/motrix-install-assistant) will help you install the latest HKU application.
 
 <p>
   <a href="https://github.com/motrixapp/motrix-install-assistant">
-    <img src="https://raw.githubusercontent.com/motrixapp/motrix-install-assistant/main/build/256x256.png" width="192" alt="Motrix Install Assistant Icon" />
+    <img src="https://raw.githubusercontent.com/motrixapp/motrix-install-assistant/main/build/256x256.png" width="192" alt="HKU Install Assistant Icon" />
   </a>
 </p>
 
 ### Linux
 
-You can download the `AppImage` (for all Linux distributions) or `snap` to install Motrix, see [GitHub/release](https://github.com/agalwood/Motrix/releases) for more Linux installation package formats.
+You can download the `AppImage` (for all Linux distributions) or `snap` to install HKU, see [GitHub/release](https://github.com/agalwood/HKU/releases) for more Linux installation package formats.
 
-Motrix may need to run with `sudo` for the first time in Linux because there is no permission to create the download session file (`/var/cache/aria2.session`).
+HKU may need to run with `sudo` for the first time in Linux because there is no permission to create the download session file (`/var/cache/aria2.session`).
 
 If you want to build from source code, please read the **Build** section.
 
 #### AppImage
-The latest version of Motrix AppImage requires you to manually perform desktop integration. Please check the documentation of [AppImageLauncher](https://github.com/TheAssassin/AppImageLauncher) .
+The latest version of HKU AppImage requires you to manually perform desktop integration. Please check the documentation of [AppImageLauncher](https://github.com/TheAssassin/AppImageLauncher) .
 
 > Desktop Integration
 > Since electron-builder 21 desktop integration is not a part of produced AppImage file.
 > [AppImageLauncher](https://github.com/TheAssassin/AppImageLauncher) is the recommended way to integrate AppImages.
 
-Deepin 20 Beta users failed to install Motrix, please follow the steps below:
+Deepin 20 Beta users failed to install HKU, please follow the steps below:
 
-Open the `Terminal`, paste and run the following command to install Motrix again.
+Open the `Terminal`, paste and run the following command to install HKU again.
 
 ```bash
 sudo apt --fix-broken install
 ```
 
 #### Snap
-Motrix has been listed on [Snapcraft](https://snapcraft.io/motrix) , Ubuntu users recommend downloading from the Snap Store.
+HKU has been listed on [Snapcraft](https://snapcraft.io/motrix) , Ubuntu users recommend downloading from the Snap Store.
 
 Tips for v1.5.10
 
@@ -100,7 +100,7 @@ Please unchecked Preferences--Basic Settings--Hide App Menu (Windows & Linux Onl
 Please update to v1.5.12 and above, you can use the keyboard shortcut <kbd>Ctrl</kbd> + <kbd>q</kbd> to quickly exit the application.
 
 #### AUR
-For Arch Linux users, Motrix is available in [aur](https://aur.archlinux.org/packages/motrix/), thanks to the maintainer [@weearc](https://github.com/weearc).
+For Arch Linux users, HKU is available in [aur](https://aur.archlinux.org/packages/motrix/), thanks to the maintainer [@weearc](https://github.com/weearc).
 
 Run the following command to install:
 
@@ -109,14 +109,14 @@ yay -S motrix
 ```
 
 #### Flatpak
-Thanks to the [PR](https://github.com/flathub/flathub/pull/2334) of [@proletarius101](https://github.com/proletarius101), Motrix has been listed [Flathub](https://flathub.org/apps/details/net.agalwood.Motrix), Linux users who like the Flatpak can try it.
+Thanks to the [PR](https://github.com/flathub/flathub/pull/2334) of [@proletarius101](https://github.com/proletarius101), HKU has been listed [Flathub](https://flathub.org/apps/details/net.agalwood.HKU), Linux users who like the Flatpak can try it.
 
 ```bash
 # Install
-flatpak install flathub net.agalwood.Motrix
+flatpak install flathub net.agalwood.HKU
 
 # Run
-flatpak run net.agalwood.Motrix
+flatpak run net.agalwood.HKU
 ```
 
 ## ✨ Features
@@ -148,13 +148,13 @@ flatpak run net.agalwood.Motrix
 ### Clone Code
 
 ```bash
-git clone git@github.com:agalwood/Motrix.git
+git clone git@github.com:agalwood/HKU.git
 ```
 
 ### Install Dependencies
 
 ```bash
-cd Motrix
+cd HKU
 yarn
 ```
 

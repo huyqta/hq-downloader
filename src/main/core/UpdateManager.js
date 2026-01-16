@@ -23,7 +23,7 @@ export default class UpdateManager extends EventEmitter {
     this.updater.autoDownload = false
     this.updater.autoInstallOnAppQuit = false
     this.updater.logger = logger
-    logger.info('[Motrix] setup proxy:', this.options.proxy)
+    logger.info('[HKU] setup proxy:', this.options.proxy)
     this.setupProxy(this.options.proxy)
 
     this.autoCheckData = {
@@ -46,7 +46,7 @@ export default class UpdateManager extends EventEmitter {
     const { username, password, protocol = 'http:', host, port } = url
     const proxyRules = `${protocol}//${host}`
 
-    logger.info(`[Motrix] setup proxy: ${proxyRules}`, username, password, protocol, host, port)
+    logger.info(`[HKU] setup proxy: ${proxyRules}`, username, password, protocol, host, port)
     this.updater.netSession.setProxy({
       proxyRules
     })
@@ -157,7 +157,7 @@ export default class UpdateManager extends EventEmitter {
       ? this.i18n.t('app.update-error-message')
       : (error.stack || error).toString()
 
-    this.updater.logger.warn(`[Motrix] update-error: ${msg}`)
+    this.updater.logger.warn(`[HKU] update-error: ${msg}`)
     dialog.showErrorBox('Error', msg)
   }
 }

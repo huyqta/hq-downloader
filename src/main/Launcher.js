@@ -57,7 +57,7 @@ export default class Launcher extends EventEmitter {
       this.handleAppLaunchArgv(process.argv)
     }
 
-    logger.info('[Motrix] openedAtLogin:', this.openedAtLogin)
+    logger.info('[HKU] openedAtLogin:', this.openedAtLogin)
 
     this.handleAppEvents()
   }
@@ -80,15 +80,15 @@ export default class Launcher extends EventEmitter {
   /**
    * handleOpenUrl
    * Event 'open-url' macOS only
-   * "name": "Motrix Protocol",
-   * "schemes": ["mo", "motrix"]
+   * "name": "HKU Protocol",
+   * "schemes": ["hku", "hk"]
    */
   handleOpenUrl () {
     if (is.mas() || !is.macOS()) {
       return
     }
     app.on('open-url', (event, url) => {
-      logger.info(`[Motrix] open-url: ${url}`)
+      logger.info(`[HKU] open-url: ${url}`)
       event.preventDefault()
       this.url = url
       this.sendUrlToApplication()
@@ -105,7 +105,7 @@ export default class Launcher extends EventEmitter {
       return
     }
     app.on('open-file', (event, path) => {
-      logger.info(`[Motrix] open-file: ${path}`)
+      logger.info(`[HKU] open-file: ${path}`)
       event.preventDefault()
       this.file = path
       this.sendFileToApplication()
@@ -118,12 +118,12 @@ export default class Launcher extends EventEmitter {
    * @param {array} argv
    */
   handleAppLaunchArgv (argv) {
-    logger.info('[Motrix] handleAppLaunchArgv:', argv)
+    logger.info('[HKU] handleAppLaunchArgv:', argv)
 
     // args: array, extra: map
     const { args, extra } = splitArgv(argv)
-    logger.info('[Motrix] split argv args:', args)
-    logger.info('[Motrix] split argv extra:', extra)
+    logger.info('[HKU] split argv args:', args)
+    logger.info('[HKU] split argv extra:', extra)
     if (extra['--opened-at-login'] === '1') {
       this.openedAtLogin = true
     }
@@ -173,7 +173,7 @@ export default class Launcher extends EventEmitter {
 
     app.on('activate', () => {
       if (global.application) {
-        logger.info('[Motrix] activate')
+        logger.info('[HKU] activate')
         global.application.showPage('index')
       }
     })
@@ -181,9 +181,9 @@ export default class Launcher extends EventEmitter {
 
   handleAppWillQuit () {
     app.on('will-quit', () => {
-      logger.info('[Motrix] will-quit')
+      logger.info('[HKU] will-quit')
       if (global.application) {
-        logger.info('[Motrix] will-quit.application.stop')
+        logger.info('[HKU] will-quit.application.stop')
         global.application.stop()
       }
     })
